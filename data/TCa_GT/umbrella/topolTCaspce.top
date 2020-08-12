@@ -1,0 +1,188 @@
+;
+;	File 'topol.top' was generated
+;	By user: anggao (501)
+;	On host: angs-mbp.lan
+;	At date: Mon Jun  1 15:16:33 2020
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	GROMACS:      gmx pdb2gmx, VERSION 5.0.4
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Library dir:  /usr/local/gromacs/share/gromacs/top
+;	Command line:
+;	  gmx pdb2gmx -f T.gro
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./amber99bsc1.ff/forcefield.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+GaoT               3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 XT  rtp XT   q  0.0
+     1        MCO      1     XT    MCO      1     0.1268         15   ; qtot 0.1268
+     2         N*      1     XT     N1      2    -0.0239      14.01   ; qtot 0.1029
+     3         C2      1     XT     C6      3    -0.2209      12.01   ; qtot -0.118
+     4         H4      1     XT     H6      4     0.2607      1.008   ; qtot 0.1427
+     5         C2      1     XT     C5      5     0.0025      12.01   ; qtot 0.1452
+     6         CT      1     XT     C7      6    -0.2269      12.01   ; qtot -0.0817
+     7         HC      1     XT    H71      7      0.077      1.008   ; qtot -0.0047
+     8         HC      1     XT    H72      8      0.077      1.008   ; qtot 0.0723
+     9         HC      1     XT    H73      9      0.077      1.008   ; qtot 0.1493
+    10          C      1     XT     C4     10     0.5194      12.01   ; qtot 0.6687
+    11          O      1     XT     O4     11    -0.5563         16   ; qtot 0.1124
+    12         NA      1     XT     N3     12     -0.434      14.01   ; qtot -0.3216
+    13          H      1     XT     H3     13      0.342      1.008   ; qtot 0.0204
+    14          C      1     XT     C2     14     0.5677      12.01   ; qtot 0.5881
+    15          O      1     XT     O2     15    -0.5881         16   ; qtot 0
+
+[ bonds ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     2     1 
+    2     3     1 
+    2    14     1 
+    3     4     1 
+    3     5     1 
+    5     6     1 
+    5    10     1 
+    6     7     1 
+    6     8     1 
+    6     9     1 
+   10    11     1 
+   10    12     1 
+   12    13     1 
+   12    14     1 
+   14    15     1 
+
+[ pairs ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     4     1 
+    1     5     1 
+    1    12     1 
+    1    15     1 
+    2     6     1 
+    2    10     1 
+    2    13     1 
+    3     7     1 
+    3     8     1 
+    3     9     1 
+    3    11     1 
+    3    12     1 
+    3    15     1 
+    4     6     1 
+    4    10     1 
+    4    14     1 
+    5    13     1 
+    5    14     1 
+    6    11     1 
+    6    12     1 
+    7    10     1 
+    8    10     1 
+    9    10     1 
+   10    15     1 
+   11    13     1 
+   11    14     1 
+   13    15     1 
+
+[ angles ]
+;  ai    aj    ak funct            c0            c1            c2            c3
+    1     2     3     1 
+    1     2    14     1 
+    3     2    14     1 
+    2     3     4     1 
+    2     3     5     1 
+    4     3     5     1 
+    3     5     6     1 
+    3     5    10     1 
+    6     5    10     1 
+    5     6     7     1 
+    5     6     8     1 
+    5     6     9     1 
+    7     6     8     1 
+    7     6     9     1 
+    8     6     9     1 
+    5    10    11     1 
+    5    10    12     1 
+   11    10    12     1 
+   10    12    13     1 
+   10    12    14     1 
+   13    12    14     1 
+    2    14    12     1 
+    2    14    15     1 
+   12    14    15     1 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3            c4            c5
+    1     2     3     4     9 
+    1     2     3     5     9 
+   14     2     3     4     9 
+   14     2     3     5     9 
+    1     2    14    12     9 
+    1     2    14    15     9 
+    3     2    14    12     9 
+    3     2    14    15     9 
+    2     3     5     6     9 
+    2     3     5    10     9 
+    4     3     5     6     9 
+    4     3     5    10     9 
+    3     5     6     7     9 
+    3     5     6     8     9 
+    3     5     6     9     9 
+   10     5     6     7     9 
+   10     5     6     8     9 
+   10     5     6     9     9 
+    3     5    10    11     9 
+    3     5    10    12     9 
+    6     5    10    11     9 
+    6     5    10    12     9 
+    5    10    12    13     9 
+    5    10    12    14     9 
+   11    10    12    13     9 
+   11    10    12    14     9 
+   10    12    14     2     9 
+   10    12    14    15     9 
+   13    12    14     2     9 
+   13    12    14    15     9 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3
+    1     2     3    14     4 
+    2     5     3     4     4 
+    2    12    14    15     4 
+    5    12    10    11     4 
+    6     5     3    10     4 
+   10    14    12    13     4 
+
+; Include Position restraint file
+#include "posreTstrong.itp"
+
+[ moleculetype ]
+; molname       nrexcl
+CA              1
+
+[ atoms ]
+; id    at type         res nr  residu name     at name  cg nr  charge
+   1    C0                  1       CA             CA      1    2.00000
+
+[ position_restraints ]
+; atom  type      fx      fy      fz
+     1     1  2000000  2000000  0
+
+
+; Include water topology
+#include "./amber99bsc1.ff/spce.itp"
+
+[ system ]
+; Name
+Ang Gao Nucleotide
+
+[ molecules ]
+; Compound        #mols
+GaoT               1
+CA                 1
+SOL                1041

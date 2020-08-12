@@ -1,0 +1,84 @@
+; Run parameters
+integrator              = md        ; leap-frog integrator
+nsteps                  = 10000000     ; 2 * 10000000 = 20000 ps
+dt                      = 0.002     ; 2 fs
+; Output control
+nstxout                 = 0       ; save coordinates every 1.0 ps
+nstvout                 = 0      ; save velocities every 1.0 ps
+nstenergy               = 1000      ; save energies every 1.0 ps
+nstlog                  = 1000      ; update log file every 1.0 ps
+nstxtcout               = 10
+compressed-x-grps       = XT CA
+; Bond parameters
+continuation            = no        ; first dynamics run
+constraint_algorithm    = lincs     ; holonomic constraints 
+constraints             = h-bonds   ; bonds involving H are constrained
+lincs_iter              = 1         ; accuracy of LINCS
+lincs_order             = 4         ; also related to accuracy
+
+
+; NEIGHBORSEARCHING PARAMETERS
+; nblist update frequency
+nstlist                  = 1
+; ns algorithm (simple or grid)
+ns-type                  = grid
+; Periodic boundary conditions: xyz (default), no (vacuum)
+; or full (infinite systems only)
+pbc                      = xyz
+; nblist cut-off
+rlist                    = 1.4
+
+
+; OPTIONS FOR ELECTROSTATICS AND VDW
+; Method for doing electrostatics
+cutoff-scheme            = Group
+
+coulombtype              = User
+rcoulomb                 = 1.4
+; Dielectric constant (DC) for cut-off or DC of reaction field
+epsilon-r                = 1
+; Method for doing Van der Waals
+vdw-type                 = Cut-off
+; cut-off lengths
+rvdw                     = 1.4
+; Apply long range dispersion corrections for Energy and Pressure
+;DispCorr                 = EnerPres
+
+
+
+
+; Temperature coupling is on
+tcoupl                  = V-rescale             ; modified Berendsen thermostat
+tc-grps                 = System   ; two coupling groups - more accurate
+tau_t                   = 0.1              ; time constant, in ps
+ref_t                   = 300              ; reference temperature, one for each group, in K
+; Pressure coupling
+Pcoupl                   = Parrinello-Rahman
+;Pcoupl                   = Berendsen
+Pcoupltype               = Isotropic
+; Time constant (ps), compressibility (1/bar) and reference P (bar)
+tau-p                    = 20
+compressibility          = 4.5e-5
+ref-p                    = 78
+refcoord_scaling         = com
+; Velocity generation
+gen_vel                 = yes       ; assign velocities from Maxwell distribution
+gen_temp                = 300       ; temperature for Maxwell distribution
+gen_seed                = -1        ; generate a random seed
+
+; Pull code
+pull                    = umbrella
+pull-geometry            = distance
+pull-ngroups            = 2
+pull-ncoords            = 1
+pull-group1-name        = TN
+pull-group2-name        = CA
+pull-dim         = N N Y
+pull-coord1-groups      = 1 2
+pull-coord1-rate        = 0.0          ; 0.01 nm per ps = 10 nm per ns
+pull-coord1-k           = 8000          ; kJ mol^-1 nm^-2
+pull-start              = yes           ; define initial COM distance > 0
+pull_nstxout            = 10
+pull_nstfout            = 10
+
+

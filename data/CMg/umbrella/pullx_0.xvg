@@ -1,0 +1,46 @@
+# This file was created Thu Jun  4 14:48:26 2020
+# Created by:
+# GROMACS:      gmx mdrun, VERSION 5.0.4
+# Executable:   /usr/local/gromacs/bin/gmx
+# Library dir:  /usr/local/gromacs/share/gromacs/top
+# Command line:
+#   gmx mdrun -deffnm md -pf pullf_0.xvg -px pullx_0.xvg
+# gmx is part of G R O M A C S:
+#
+# Getting the Right Output Means no Artefacts in Calculating Stuff
+#
+@    title "Pull COM"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Position (nm)"
+@TYPE xy
+0.0000	0.201
+0.0200	0.208858
+0.0400	0.21499
+0.0600	0.225167
+0.0800	0.224419
+0.1000	0.21601
+0.1200	0.213792
+0.1400	0.213375
+0.1600	0.220065
+0.1800	0.234202
+0.2000	0.230417
+0.2200	0.2204
+0.2400	0.226127
+0.2600	0.216087
+0.2800	0.211597
+0.3000	0.215951
+0.3200	0.218393
+0.3400	0.219421
+0.3600	0.22558
+0.3800	0.221208
+0.4000	0.221203
+0.4200	0.226159
+0.4400	0.227744
+0.4600	0.224279
+0.4800	0.22295
+0.5000	0.214149
+0.5200	0.212481
+0.5400	0.216651
+0.5600	0.225463
+0.5800	0.22871
+0.6000	0.229339

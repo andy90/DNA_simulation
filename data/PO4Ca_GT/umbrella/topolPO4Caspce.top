@@ -1,0 +1,77 @@
+;
+;	File 'topol.top' was generated
+;	By user: anggao (501)
+;	On host: angs-mbp.lan
+;	At date: Wed Jun 10 21:27:02 2020
+;
+;	This is a standalone topology file
+;
+;	Created by:
+;	GROMACS:      gmx pdb2gmx, VERSION 5.0.4
+;	Executable:   /usr/local/gromacs/bin/gmx
+;	Library dir:  /usr/local/gromacs/share/gromacs/top
+;	Command line:
+;	  gmx pdb2gmx -f PO4.gro
+;	Force field was read from current directory or a relative path - path added.
+;
+
+; Include forcefield parameters
+#include "./amber99bsc1.ff/forcefield.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+PO4               3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 PO4 rtp PO4  q -3.0
+     1         PP      1    PO4     PG      1       0.97      30.97   ; qtot 0.97
+     2         OO      1    PO4    OG1      2    -0.9925         16   ; qtot -0.0225
+     3         OO      1    PO4    OG2      3    -0.9925         16   ; qtot -1.015
+     4         OO      1    PO4    OG3      4    -0.9925         16   ; qtot -2.007
+     5         OO      1    PO4    OG4      5    -0.9925         16   ; qtot -3
+
+[ bonds ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     2     1 
+    1     3     1 
+    1     4     1 
+    1     5     1 
+
+[ angles ]
+;  ai    aj    ak funct            c0            c1            c2            c3
+    2     1     3     1 
+    2     1     4     1 
+    2     1     5     1 
+    3     1     4     1 
+    3     1     5     1 
+    4     1     5     1 
+
+; Include Position restraint file
+#include "posrePO4strong.itp"
+
+[ moleculetype ]
+; molname       nrexcl
+CA              1
+
+[ atoms ]
+; id    at type         res nr  residu name     at name  cg nr  charge
+   1    C0                  1       CA             CA      1    2.00000
+
+[ position_restraints ]
+; atom  type      fx      fy      fz
+     1     1  2000000  2000000  0
+
+; Include water topology
+#include "./amber99bsc1.ff/spce.itp"
+
+
+[ system ]
+; Name
+Ang Gao PO4
+
+[ molecules ]
+; Compound        #mols
+PO4               1
+CA                1
+SOL               1319

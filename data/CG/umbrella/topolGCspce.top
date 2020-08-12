@@ -1,0 +1,293 @@
+; Include forcefield parameters
+#include "./amber99bsc1.ff/forcefield.itp"
+
+[ moleculetype ]
+; Name            nrexcl
+GaoC               3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 XC  rtp XC   q  0.0
+     1        MCO      1     XC    MCO      1     0.0631         15   ; qtot 0.0631
+     2         N*      1     XC     N1      2    -0.0339      14.01   ; qtot 0.0292
+     3         CM      1     XC     C6      3    -0.0183      12.01   ; qtot 0.0109
+     4         H4      1     XC     H6      4     0.2293      1.008   ; qtot 0.2402
+     5         CM      1     XC     C5      5    -0.5222      12.01   ; qtot -0.282
+     6         HA      1     XC     H5      6     0.1863      1.008   ; qtot -0.0957
+     7         CA      1     XC     C4      7     0.8439      12.01   ; qtot 0.7482
+     8         N2      1     XC     N4      8    -0.9773      14.01   ; qtot -0.2291
+     9          H      1     XC    H41      9     0.4314      1.008   ; qtot 0.2023
+    10          H      1     XC    H42     10     0.4314      1.008   ; qtot 0.6337
+    11         NC      1     XC     N3     11    -0.7748      14.01   ; qtot -0.1411
+    12          C      1     XC     C2     12     0.7959      12.01   ; qtot 0.6548
+    13          O      1     XC     O2     13    -0.6548         16   ; qtot 0
+
+[ bonds ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     2     1 
+    2     3     1 
+    2    12     1 
+    3     4     1 
+    3     5     1 
+    5     6     1 
+    5     7     1 
+    7     8     1 
+    7    11     1 
+    8     9     1 
+    8    10     1 
+   11    12     1 
+   12    13     1 
+
+[ pairs ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     4     1 
+    1     5     1 
+    1    11     1 
+    1    13     1 
+    2     6     1 
+    2     7     1 
+    3     8     1 
+    3    11     1 
+    3    13     1 
+    4     6     1 
+    4     7     1 
+    4    12     1 
+    5     9     1 
+    5    10     1 
+    5    12     1 
+    6     8     1 
+    6    11     1 
+    7    13     1 
+    8    12     1 
+    9    11     1 
+   10    11     1 
+
+[ angles ]
+;  ai    aj    ak funct            c0            c1            c2            c3
+    1     2     3     1 
+    1     2    12     1 
+    3     2    12     1 
+    2     3     4     1 
+    2     3     5     1 
+    4     3     5     1 
+    3     5     6     1 
+    3     5     7     1 
+    6     5     7     1 
+    5     7     8     1 
+    5     7    11     1 
+    8     7    11     1 
+    7     8     9     1 
+    7     8    10     1 
+    9     8    10     1 
+    7    11    12     1 
+    2    12    11     1 
+    2    12    13     1 
+   11    12    13     1 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3            c4            c5
+    1     2     3     4     9 
+    1     2     3     5     9 
+   12     2     3     4     9 
+   12     2     3     5     9 
+    1     2    12    11     9 
+    1     2    12    13     9 
+    3     2    12    11     9 
+    3     2    12    13     9 
+    2     3     5     6     9 
+    2     3     5     7     9 
+    4     3     5     6     9 
+    4     3     5     7     9 
+    3     5     7     8     9 
+    3     5     7    11     9 
+    6     5     7     8     9 
+    6     5     7    11     9 
+    5     7     8     9     9 
+    5     7     8    10     9 
+   11     7     8     9     9 
+   11     7     8    10     9 
+    5     7    11    12     9 
+    8     7    11    12     9 
+    7    11    12     2     9 
+    7    11    12    13     9 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3
+    1     2     3    12     4 
+    2     5     3     4     4 
+    2    11    12    13     4 
+    3     7     5     6     4 
+    5     8     7    11     4 
+    7     9     8    10     4 
+
+; Include Position restraint file
+#include "posreCstrong.itp"
+
+
+[ moleculetype ]
+; Name            nrexcl
+GaoG               3
+
+[ atoms ]
+;   nr       type  resnr residue  atom   cgnr     charge       mass  typeB    chargeB      massB
+; residue   1 XG  rtp XG   q  0.0
+     1        MCO      1     XG    MCO      1     0.0888         15   ; qtot 0.0888
+     2         N*      1     XG     N9      2     0.0577      14.01   ; qtot 0.1465
+     3         CK      1     XG     C8      3     0.0736      12.01   ; qtot 0.2201
+     4         H5      1     XG     H8      4     0.1997      1.008   ; qtot 0.4198
+     5         NB      1     XG     N7      5    -0.5725      14.01   ; qtot -0.1527
+     6         CB      1     XG     C5      6     0.1991      12.01   ; qtot 0.0464
+     7          C      1     XG     C6      7     0.4918      12.01   ; qtot 0.5382
+     8          O      1     XG     O6      8    -0.5699         16   ; qtot -0.0317
+     9         NA      1     XG     N1      9    -0.5053      14.01   ; qtot -0.537
+    10          H      1     XG     H1     10      0.352      1.008   ; qtot -0.185
+    11         CA      1     XG     C2     11     0.7432      12.01   ; qtot 0.5582
+    12         N2      1     XG     N2     12     -0.923      14.01   ; qtot -0.3648
+    13          H      1     XG    H21     13     0.4235      1.008   ; qtot 0.0587
+    14          H      1     XG    H22     14     0.4235      1.008   ; qtot 0.4822
+    15         NC      1     XG     N3     15    -0.6636      14.01   ; qtot -0.1814
+    16         CB      1     XG     C4     16     0.1814      12.01   ; qtot 0
+
+[ bonds ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     2     1 
+    2     3     1 
+    2    16     1 
+    3     4     1 
+    3     5     1 
+    5     6     1 
+    6     7     1 
+    6    16     1 
+    7     8     1 
+    7     9     1 
+    9    10     1 
+    9    11     1 
+   11    12     1 
+   11    15     1 
+   12    13     1 
+   12    14     1 
+   15    16     1 
+
+[ pairs ]
+;  ai    aj funct            c0            c1            c2            c3
+    1     4     1 
+    1     5     1 
+    1     6     1 
+    1    15     1 
+    2     7     1 
+    2    11     1 
+    3     7     1 
+    3    15     1 
+    4     6     1 
+    4    16     1 
+    5     8     1 
+    5     9     1 
+    5    15     1 
+    6    10     1 
+    6    11     1 
+    7    12     1 
+    7    15     1 
+    8    10     1 
+    8    11     1 
+    8    16     1 
+    9    13     1 
+    9    14     1 
+    9    16     1 
+   10    12     1 
+   10    15     1 
+   12    16     1 
+   13    15     1 
+   14    15     1 
+
+[ angles ]
+;  ai    aj    ak funct            c0            c1            c2            c3
+    1     2     3     1 
+    1     2    16     1 
+    3     2    16     1 
+    2     3     4     1 
+    2     3     5     1 
+    4     3     5     1 
+    3     5     6     1 
+    5     6     7     1 
+    5     6    16     1 
+    7     6    16     1 
+    6     7     8     1 
+    6     7     9     1 
+    8     7     9     1 
+    7     9    10     1 
+    7     9    11     1 
+   10     9    11     1 
+    9    11    12     1 
+    9    11    15     1 
+   12    11    15     1 
+   11    12    13     1 
+   11    12    14     1 
+   13    12    14     1 
+   11    15    16     1 
+    2    16     6     1 
+    2    16    15     1 
+    6    16    15     1 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3            c4            c5
+    1     2     3     4     9 
+    1     2     3     5     9 
+   16     2     3     4     9 
+   16     2     3     5     9 
+    1     2    16     6     9 
+    1     2    16    15     9 
+    3     2    16     6     9 
+    3     2    16    15     9 
+    2     3     5     6     9 
+    4     3     5     6     9 
+    3     5     6     7     9 
+    3     5     6    16     9 
+    5     6     7     8     9 
+    5     6     7     9     9 
+   16     6     7     8     9 
+   16     6     7     9     9 
+    5     6    16     2     9 
+    5     6    16    15     9 
+    7     6    16     2     9 
+    7     6    16    15     9 
+    6     7     9    10     9 
+    6     7     9    11     9 
+    8     7     9    10     9 
+    8     7     9    11     9 
+    7     9    11    12     9 
+    7     9    11    15     9 
+   10     9    11    12     9 
+   10     9    11    15     9 
+    9    11    12    13     9 
+    9    11    12    14     9 
+   15    11    12    13     9 
+   15    11    12    14     9 
+    9    11    15    16     9 
+   12    11    15    16     9 
+   11    15    16     2     9 
+   11    15    16     6     9 
+
+[ dihedrals ]
+;  ai    aj    ak    al funct            c0            c1            c2            c3
+    1     2     3    16     4 
+    2     5     3     4     4 
+    6     9     7     8     4 
+    7    11     9    10     4 
+   11    13    12    14     4 
+   12     9    11    15     4 
+
+; Include Position restraint file
+#include "posreGstrongfreeZ.itp"
+
+; Include water topology
+#include "./amber99bsc1.ff/spce.itp"
+
+[ system ]
+; Name
+Ang Gao Nucleotide
+
+[ molecules ]
+; Compound        #mols
+GaoC               1
+GaoG               1
+SOL                1038

@@ -1,0 +1,46 @@
+# This file was created Thu Jun  4 14:48:26 2020
+# Created by:
+# GROMACS:      gmx mdrun, VERSION 5.0.4
+# Executable:   /usr/local/gromacs/bin/gmx
+# Library dir:  /usr/local/gromacs/share/gromacs/top
+# Command line:
+#   gmx mdrun -deffnm md -pf pullf_0.xvg -px pullx_0.xvg
+# gmx is part of G R O M A C S:
+#
+# Georgetown Riga Oslo Madrid Amsterdam Chisinau Stockholm
+#
+@    title "Pull force"
+@    xaxis  label "Time (ps)"
+@    yaxis  label "Force (kJ/mol/nm)"
+@TYPE xy
+0.0000	-3.33161e-05
+0.0200	-62.8643
+0.0400	-111.92
+0.0600	-193.334
+0.0800	-187.353
+0.1000	-120.08
+0.1200	-102.338
+0.1400	-98.9972
+0.1600	-152.52
+0.1800	-265.615
+0.2000	-235.338
+0.2200	-155.202
+0.2400	-201.019
+0.2600	-120.693
+0.2800	-84.7723
+0.3000	-119.608
+0.3200	-139.141
+0.3400	-147.366
+0.3600	-196.642
+0.3800	-161.662
+0.4000	-161.622
+0.4200	-201.271
+0.4400	-213.948
+0.4600	-186.235
+0.4800	-175.601
+0.5000	-105.188
+0.5200	-91.8459
+0.5400	-125.208
+0.5600	-195.704
+0.5800	-221.677
+0.6000	-226.713

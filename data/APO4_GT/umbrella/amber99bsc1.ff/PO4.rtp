@@ -1,0 +1,25 @@
+[ bondedtypes ]
+; Col 1: Type of bond
+; Col 2: Type of angles
+; Col 3: Type of proper dihedrals
+; Col 4: Type of improper dihedrals
+; Col 5: Generate all dihedrals if 1, only heavy atoms of 0.
+; Col 6: Number of excluded neighbors for nonbonded interactions
+; Col 7: Generate 1,4 interactions between pairs of hydrogens if 1
+; Col 8: Remove impropers over the same bond as a proper if it is 1
+; bonds  angles  dihedrals  impropers all_dihedrals nrexcl HH14 RemoveDih
+     1       1          9          4        1         3      1     0
+
+
+[ PO4 ]
+ [ atoms ]
+     PG      PP        0.970     1    
+     OG1     OO      -0.9925    2 
+     OG2     OO      -0.9925    3 
+     OG3     OO      -0.9925    4 
+     OG4     OO      -0.9925    5 
+ [ bonds ]
+     PG     OG1
+     PG     OG2
+     PG     OG3
+     PG     OG4
