@@ -33,5 +33,6 @@ df_T_new <- data.frame(id = 1, df_T[, 1:2], Txyz_new)
 
 df_AT <- rbind(df_T_new, df_A_new)
 
+saveRDS(df_AT, file = paste(filepath, "df_AT", sep = ""))
 write_to_gro(paste(filepath, "AT.gro", sep = ""), df_AT)
 

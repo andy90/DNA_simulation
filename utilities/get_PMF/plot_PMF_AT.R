@@ -1,35 +1,26 @@
 rm(list = ls())
 library(tidyverse)
+library(here)
+full <- readRDS(file = here("data/AT/umbrella/10blocks/df_AT_meanstd_10blocks" ))
 
-full <- read.table(file = "ang_base_pair_top/AT/umbrella/profile.xvg" )
-full_av <- 
-  full %>%
-  filter((V1 > 0.95) & (V1 < 1.05)) %>%
-  summarise(bulk = mean(V2)) %>%
-  pull()
 
-full$V2 <- full$V2 - full_av
+GT <- readRDS(file = here("data/AT_GT/umbrella/10blocks/df_AT_GT_meanstd_10blocks"))
 
-GT <- read.table(file = "ang_base_pair_top/AT_GT/umbrella/profile.xvg" )
-GT_av <- 
-  GT %>%
-  filter((V1 > 0.95) & (V1 < 1.05)) %>%
-  summarise(bulk = mean(V2)) %>%
-  pull()
-
-GT$V2 <- GT$V2 - GT_av
 
 full$model <- "full"
 GT$model <- "GT"
 
-df_full_GT <- rbind(full, GT)
-df_full_GT <- 
-  df_full_GT %>% 
-  set_names(c("r", "w", "model"))
-  
 
-p <- ggplot(data = df_full_GT)
-p <- p + geom_line(mapping = aes(x = r, y = w, color = model))
-p <- p + xlim(0.25, 1.2)
+
+v_LMF_inter <- readRDS(here("utilities/get_PMF/df_TA_LMF_inter"))
+v_LMF_inter_approx <- approx(x = v_LMF_inter$r, y = v_LMF_inter$v, xout = GT$r)
+
+LMF <- data.frame(r = GT$r, pmf = GT$pmf + v_LMF_inter_approx$y, error = GT$error, model = "LMF")
+
+df_full_GT_LMF <- do.call(rbind, list(full, GT, LMF))
+p <- ggplot(data = df_full_GT_LMF,  mapping = aes(x = r, y = pmf, color = model))
+p <- p + geom_line()
+p <- p + geom_errorbar(aes(ymin = pmf - error, ymax = pmf + error))
+p <- p + xlim(0.2, 0.9)
 p
-ggsave("AT_PMF.pdf")
+ggsave(here("utilities/get_PMF/AT_LMF_PMF.pdf"))

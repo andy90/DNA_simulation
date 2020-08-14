@@ -2,7 +2,9 @@ rm(list = ls())
 library(tidyverse)
 library(foreach)
 library(matrixStats)
-folder_path <- "ang_base_pair_top/APO4/umbrella/10blocks/"
+library(here)
+folder_path <- here("data/APO4/umbrella/10blocks/")
+file_name <- "APO4"
 n_block <- 10
 
 all_pmfs <- 
@@ -45,8 +47,8 @@ pmf_std <- rowSds(all_pmfs_interp)/sqrt(n_block)
 
 df_pmf_final <- data.frame(r = r, pmf = pmf_mean, error = pmf_std)
 
-saveRDS(df_pmf_final, file = paste(folder_path, "df_APO4_full_meanstd_", n_block, "blocks", sep = ""))
-write.table(x = df_pmf_final, file = paste(folder_path, "df_APO4_full_meanstd_", n_block, "blocks.txt", sep = ""), row.names = FALSE, col.names = FALSE, quote = FALSE)
+saveRDS(df_pmf_final, file = paste(folder_path, "df_", file_name, "_meanstd_", n_block, "blocks", sep = ""))
+write.table(x = df_pmf_final, file = paste(folder_path, "df_", file_name, "_meanstd_", n_block, "blocks.txt", sep = ""), row.names = FALSE, col.names = FALSE, quote = FALSE)
 p <- ggplot(data = df_pmf_final, mapping = aes(x = r, y = pmf))
 p <- p + geom_line()
 p <- p + geom_errorbar(aes(ymin = pmf - error, ymax = pmf + error))

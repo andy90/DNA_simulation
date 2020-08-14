@@ -2,7 +2,8 @@ rm(list = ls())
 library(tidyverse)
 library(foreach)
 library(matrixStats)
-folder_path <- "ang_base_pair_top/PO4Ca_GT/umbrella/10blocks/"
+library(here)
+folder_path <- here("data/PO4Ca_GT/umbrella/10blocks/")
 file_name <- "PO4Ca_GT"
 n_block <- 10
 

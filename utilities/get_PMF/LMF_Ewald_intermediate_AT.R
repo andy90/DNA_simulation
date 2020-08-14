@@ -2,7 +2,7 @@
 rm(list = ls())
 library(tidyverse)
 library(pracma)
-
+library(here)
 vLMF_intermediate <- function(r){
   a <- 0.78
   b <- 0.75
@@ -12,14 +12,32 @@ vLMF_intermediate <- function(r){
   v
 }
 
-r <- seq(from = 0.01,to = 8, by = 0.1)
-plot(r, vLMF_intermediate(r)) # less than 2 nm, periodic image not even necessary
+filepath <- here("utilities/get_PMF/")
+filepath2 <- here("utilities/make_config/")
+df_AB <- readRDS(paste(filepath2, "df_AT", sep = ""))
+a <- read_table(file = paste(filepath, "TAcharges.txt", sep = ""), col_names = FALSE)
 
-proA_coord_charge <- readRDS("PO4_coord_charge")
-proB_coord_charge <- readRDS("Ca_coord_charge")
-boxx <- 3.16
-boxy <- 3.16
-boxz <- 3.95
+a$X1 == df_AB$atom
+
+df_AB$q <- a$X3
+
+df_A <-
+  df_AB %>%
+  filter(res == "XT")
+
+df_B <-
+  df_AB %>%
+  filter(res == "XA")
+
+proA_coord_charge <- cbind(df_A[, 4:7])
+colnames(proA_coord_charge) <- c("x", "y", "z", "q")
+
+proB_coord_charge <- cbind(df_B[, 4:7])
+colnames(proB_coord_charge) <- c("x", "y", "z", "q")
+
+boxx <- 3.15
+boxy <- 3.15
+boxz <- 3.15
 
 get_LMF_intermediate <- function(x){
   
@@ -51,8 +69,8 @@ v <- sapply(r, function(ri){
 
 v*138/2.5
 
-plot(r + 0.3, v*138/2.5)
+plot(r + 0.28, v*138/2.5)
 
-df_LMF_intermediate <- data.frame("r" = r+0.3, "v" = v*138/2.5)
+df_LMF_intermediate <- data.frame("r" = r+0.28, "v" = v*138/2.5)
 
-saveRDS(df_LMF_intermediate, file = "df_PO4Ca_LMF_inter")
+saveRDS(df_LMF_intermediate, file = paste(filepath, "df_TA_LMF_inter", sep = ""))
