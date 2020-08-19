@@ -1,0 +1,57 @@
+---
+title: "Gromacs force field"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The Amber force field files for Amino acid, dna, rna, and ions are downloaded to use with Gromacs. For dna(rna), there are 4 different types of files. dna.arn, dna.hdb, dna.r2b, dna.rtp. Of these files, dna.arn, dna.r2b seems to be useless, just some information file. dna.hdb has some information which I do not understand, maybe it is some information about the constraint? dna.rtp has the definition the dna base pairs: the compostion of the molecule, the interactions and bonds between atoms in the molecule.  
+
+Now I have found out that **hdb** file is hydrogen database, should not be necessary in my case.
+
+ffbonded.itp has all the parameters for the bond interaction.
+ffnonbonded.itp has all the parameters for the nonbonded interaction.
+
+atomtypes.atp has the definition for the atom types used in the forcefield.
+
+I took out the base pair part of the nucleotide A. As one can see the total charge of the base pair part is not zero. Is this a big problem?
+```{r}
+library(tidyverse)
+a <- read_table("A.txt", col_names = FALSE)
+sum(a$X3)
+
+```
+If we add an H atom (the **H1** atom defined in the force field), the charge will be nearly zero. 
+
+We can do the same thing for nucleotide T
+```{r}
+t <- read_table("T.txt", col_names = FALSE)
+sum(t$X3)
+
+```
+
+
+We  can do the same thing for nucleotide G
+```{r}
+G <- read_table("G.txt", col_names = FALSE)
+sum(G$X3)
+
+```
+
+
+We can do the same thing for nucleotide C
+```{r}
+C <- read_table("C.txt", col_names = FALSE)
+sum(C$X3)
+
+```
+
+Improper interaction are a spiecial (or normal?) type of dihedral interaction. It constraints the angle between two planes using harmonic potential.
+
+(The proper dihedral interactions are periodic)
+
+The same atom can have different charges in the rtp file, which might be OK, since the ffbonded.itp and ffnonbonded itp has no charge information? (ffnonbonded.itp has a charge parameter, but is set to 0 for all the atoms. So I presume that the charge will be overiden in the rtp file.)
+
+Use a hydrogen atom to replace **C1** might be better.

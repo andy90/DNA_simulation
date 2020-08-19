@@ -1,0 +1,25 @@
+---
+title: "parameters for ions"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The parameters for the coarse grained phosphated group, developed by Thirumalai, has two versions. The earlest versions show up in his 2015 Nature Chemistry paper. The later version shows up in his 2019 PNAS paper. The two versions are pretty much different. His 2020 bioarxiv paper also uses the parameters in the 2019 PNAS paper. So I should take the 2019 version as my starting point.
+
+The parameters are as follows:
+
+| | Ri (Angstrom)| epsilon (kcal/mole)| charge|
+|---|---|---|---|
+|P| 1.89          |    0.2|  -1 |
+|Mg2+| 2.0 | 0.895 | +2 |
+|Ca2+| 2.8 | 1.0 | +2 | 
+
+Notice that Ri is radius instead of diameter. When put into gromacs, it needs to be changed to diameter. Also epsilon is in the unit of kcal/mole. When put into groumacs needs to be changed to kjoule/mole. 
+
+The above parameters are designed with Thirumalai's own force fields. For example, he uses a shifted LJ potential. And his radius of Mg and Ca are significantly larger than atomic simulations. This could make things hard. Better discuss this with John and Rick. 
+
+
+
